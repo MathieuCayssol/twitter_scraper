@@ -105,7 +105,7 @@ class Scraper:
 
     def get_tweets(self, start_date: datetime.datetime, end_date: datetime.datetime)-> List:
         account_scraped = list(self._read_json("data/name_ids.json").values())
-        account_scraped = account_scraped[:10]
+        account_scraped = account_scraped[:1400]
         raw_data = self._get_tweets_from_ids(
             client=self.client,
             l_account=account_scraped,
