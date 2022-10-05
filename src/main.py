@@ -9,11 +9,13 @@ from scraper import Scraper
 import config
 import datetime
 import pandas as pd
+import time
 
 BEARER_TOKEN = os.getenv('BEARER_TOKEN')
 AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID'),
 AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
+time. sleep(60)
 
 try:
     client = tweepy.Client(bearer_token=BEARER_TOKEN)
