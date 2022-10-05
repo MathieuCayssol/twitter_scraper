@@ -3,11 +3,6 @@
 
 name: Python application
 
-
-on:
-  schedule:
-    - cron: "*/15 * * * *" # every 15 minutes
-
 jobs:
   build:
 
