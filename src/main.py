@@ -3,7 +3,7 @@ from tracemalloc import start
 from typing import Dict
 import tweepy
 
-from src.scraper import Scraper
+from scraper import Scraper
 import config
 import datetime
 import pandas as pd
