@@ -6,9 +6,6 @@ name: Python application
 on:
   schedule:
     - cron: "*/15 * * * *"
-  push:
-    branches:
-      - main  # Set a branch to deploy
 
 jobs:
   build:

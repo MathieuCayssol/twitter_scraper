@@ -43,7 +43,7 @@ filename = "twitter_{}_to_{}.parquet".format(start_date, end_date)
 
 
 A = Scraper(
-    config=twitter_account,
+    twitter_account=twitter_account,
     client=client
 )
 
