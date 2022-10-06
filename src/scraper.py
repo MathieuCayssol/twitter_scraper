@@ -7,9 +7,9 @@ import boto3
 
 
 class Scraper:
-    def __init__(self, config: Any, client: Any):
+    def __init__(self, twitter_account: Any, client: Any):
         self.client = client
-        self.config = config
+        self.twitter_account = twitter_account
     
     @staticmethod
     def _write_json(d: Dict, file: str):
@@ -92,7 +92,7 @@ class Scraper:
 
 
     def extract_ids_name(self):
-        l_account = self.config.twitter_account
+        l_account = self.twitter_account
         client = self.client
         d = self._from_ids_to_name(
             client=client,

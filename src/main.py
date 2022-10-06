@@ -4,7 +4,6 @@ from typing import Dict
 import tweepy
 
 from scraper import Scraper
-import config
 import datetime
 import pandas as pd
 import time
@@ -12,6 +11,12 @@ import time
 BEARER_TOKEN = os.getenv('BEARER_TOKEN')
 AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID'),
 AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+
+twitter_account = list(
+    pd.read_csv("data/Top10000Journos.csv")
+        .sort_values(by="total_followers", ascending=False)
+        .reset_index(drop=True)["username"]
+    )
 
 time. sleep(60)
 
@@ -38,7 +43,7 @@ filename = "twitter_{}_to_{}.parquet".format(start_date, end_date)
 
 
 A = Scraper(
-    config=config,
+    config=twitter_account,
     client=client
 )
 
