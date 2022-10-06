@@ -1,5 +1,3 @@
-from http import client
-from sqlite3 import Time, Timestamp
 from typing import List, Any, Dict
 import tweepy
 import pandas as pd

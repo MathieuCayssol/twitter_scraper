@@ -1,11 +1,9 @@
-from http import client
-from pydoc import cli
 import os
 from tracemalloc import start
 from typing import Dict
 import tweepy
 
-from scraper import Scraper
+from src.scraper import Scraper
 import config
 import datetime
 import pandas as pd
