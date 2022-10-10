@@ -18,7 +18,7 @@ twitter_account = list(
         .reset_index(drop=True)["username"]
     )
 
-#time. sleep(60)
+#time.sleep(60)
 
 try:
     client = tweepy.Client(bearer_token=BEARER_TOKEN)
@@ -39,7 +39,7 @@ def create_time_range()-> tuple[datetime.datetime, datetime.datetime]:
     return start_date, end_date
 
 start_date, end_date = create_time_range()
-filename = "twitter_{}_to_{}.parquet".format(start_date, end_date)
+filename = "twitter_{}_to_{}.csv".format(start_date, end_date)
 
 
 A = Scraper(
@@ -49,7 +49,7 @@ A = Scraper(
 
 raw_data = A.get_tweets(start_date=start_date, end_date=end_date)
 df = A.transform_data(raw_data)
-df.to_parquet(filename)
+df.to_csv(filename)
 A.export_data(
     key_id=AWS_ACCESS_KEY_ID,
     access_key=AWS_SECRET_ACCESS_KEY,
