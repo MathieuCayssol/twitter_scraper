@@ -9,7 +9,7 @@ import pandas as pd
 import time
 
 BEARER_TOKEN = os.getenv('BEARER_TOKEN')
-AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID'),
+AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
 twitter_account = list(
