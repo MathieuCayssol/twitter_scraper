@@ -103,7 +103,7 @@ class Scraper:
 
     def get_tweets(self, start_date: datetime.datetime, end_date: datetime.datetime)-> List:
         account_scraped = list(self._read_json("data/name_ids.json").values())
-        account_scraped = account_scraped[:1400]
+        account_scraped = account_scraped[:100]
         raw_data = self._get_tweets_from_ids(
             client=self.client,
             l_account=account_scraped,
@@ -120,7 +120,7 @@ class Scraper:
             print("Transform_data function : Wrong type into raw_data, not equal to tweepy.tweet.Tweet")
         return df
 
-    def export_data(self, client_s3,  key_id: str, access_key: str, file_name: str):
+    def export_data(self, key_id: str, access_key: str, file_name: str):
         client_s3 = boto3.client('s3',
             aws_access_key_id=key_id,
             aws_secret_access_key=access_key

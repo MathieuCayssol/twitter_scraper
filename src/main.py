@@ -18,7 +18,7 @@ twitter_account = list(
         .reset_index(drop=True)["username"]
     )
 
-time. sleep(60)
+#time. sleep(60)
 
 try:
     client = tweepy.Client(bearer_token=BEARER_TOKEN)
