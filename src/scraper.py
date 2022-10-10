@@ -119,3 +119,13 @@ class Scraper:
         else:
             print("Transform_data function : Wrong type into raw_data, not equal to tweepy.tweet.Tweet")
         return df
+
+    def export_data(self, key_id: str, access_key: str, file_name: str):
+        client_s3 = boto3.client('s3',
+            aws_access_key_id=key_id,
+            aws_secret_access_key=access_key
+        )
+        client_s3.upload_file(Filename=file_name,
+            Bucket='mathieu-data',
+            Key=file_name
+        )

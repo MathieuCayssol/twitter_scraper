@@ -7,7 +7,6 @@ from scraper import Scraper
 import datetime
 import pandas as pd
 import time
-import boto3
 
 BEARER_TOKEN = os.getenv('BEARER_TOKEN')
 AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID'),
@@ -51,15 +50,10 @@ A = Scraper(
 raw_data = A.get_tweets(start_date=start_date, end_date=end_date)
 df = A.transform_data(raw_data)
 df.to_csv(filename)
-
-
-client_s3 = boto3.client('s3',
-    aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY
-)
-client_s3.upload_file(Filename=filename,
-    Bucket='mathieu-data',
-    Key=filename
+A.export_data(
+    key_id=AWS_ACCESS_KEY_ID,
+    access_key=AWS_SECRET_ACCESS_KEY,
+    file_name=filename
 )
 
 
