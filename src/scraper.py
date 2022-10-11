@@ -76,7 +76,10 @@ class Scraper:
                 l_count_rt.append(x["public_metrics"]["retweet_count"])
                 l_count_rep.append(x["public_metrics"]["reply_count"])
                 l_count_like.append(x["public_metrics"]["like_count"])
-                l_type.append(x["referenced_tweets"][0]["type"])
+                if x["referenced_tweets"] != None:
+                    l_type.append(x["referenced_tweets"][0]["type"])
+                else:
+                    l_type.append("tweet")
                 l_entities.append(x["entities"])
             df = pd.DataFrame(data={
                 "created_at": l_created,
