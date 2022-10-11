@@ -46,7 +46,7 @@ class Scraper:
             request = client.get_users_tweets(
                 id=x,
                 max_results=100,
-                tweet_fields=["created_at", "public_metrics","referenced_tweets","entities"],
+                tweet_fields=["created_at","author_id","public_metrics","referenced_tweets","entities"],
                 start_time=start_date.isoformat("T")+"Z",
                 end_time=end_date.isoformat("T")+"Z"
             )
@@ -59,6 +59,7 @@ class Scraper:
     def _transform_data(data: List)-> pd.DataFrame:
         df = pd.DataFrame()
         if len(data) > 0:
+            l_created = []
             l_id_tweet = []
             l_id_author = []
             l_text = []
@@ -68,15 +69,17 @@ class Scraper:
             l_type = [] #case retweet or normal tweet
             l_entities = []
             for x in data:
+                l_created.append(x["created_at"])
                 l_id_tweet.append(x["id"])
                 l_id_author.append(x["author_id"])
                 l_text.append(x["text"])
                 l_count_rt.append(x["public_metrics"]["retweet_count"])
                 l_count_rep.append(x["public_metrics"]["reply_count"])
                 l_count_like.append(x["public_metrics"]["like_count"])
-                l_type.append(x["referenced_tweets"])
+                l_type.append(x["referenced_tweets"]["type"])
                 l_entities.append(x["entities"])
             df = pd.DataFrame(data={
+                "created_at": l_created,
                 "id_tweet": l_id_tweet,
                 "id_author": l_id_author,
                 "text": l_text,

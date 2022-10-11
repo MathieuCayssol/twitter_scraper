@@ -26,16 +26,15 @@ except:
     print("Client error, check your bearer token or tweepy documentation")
 
 def create_time_range()-> tuple[datetime.datetime, datetime.datetime]:
-    current = datetime.datetime.now()
-    round_min = 15*(current.minute // 15)
-    end_date = datetime.datetime(
+    current = datetime.datetime.now() - datetime.timedelta(hours=1)
+    start_date = datetime.datetime(
         year=current.year,
         month=current.month,
         day=current.day, 
         hour=current.hour,
-        minute=round_min
+        minute=0
     )
-    start_date = end_date - datetime.timedelta(minutes=15)
+    end_date = start_date + datetime.timedelta(hours=1)
     return start_date, end_date
 
 start_date, end_date = create_time_range()
